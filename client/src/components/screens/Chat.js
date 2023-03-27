@@ -30,6 +30,15 @@ const Chat = () =>{
             console.log(users);
         } )
  },[state._id])
+
+ 
+    //receive message from socket server
+    useEffect(()=>{
+        socket.current.on("receive-message", (data) =>{
+            setRecieveMessage(data)
+        })
+    },[])
+
 //sending message to socket server 
     useEffect(()=> {
 
@@ -40,12 +49,6 @@ const Chat = () =>{
         
     },[sendMessage])
 
-    //receive message from socket server
-    useEffect(()=>{
-        socket.current.on("receive-message", (data) =>{
-            setRecieveMessage(data)
-        })
-    })
    
     // fetching chat of database from user
     //async function for intracting the db
@@ -89,7 +92,7 @@ const Chat = () =>{
              
              {/* Right side */}
              <div className="Right-side-chat">
-                   <h4>your chat with the person</h4>
+                   
                    {/* chat body */} 
                    
                    <ChatBox chat ={currentChat} currentUser = {state._id} setSendMessage={setSendMessage} recieveMessage={recieveMessage}/>
