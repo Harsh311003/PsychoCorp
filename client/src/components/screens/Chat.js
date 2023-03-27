@@ -6,7 +6,7 @@ import { userChats } from "../../api/ChatRequest";
 import Conversation from "../Conversation/Conversation"
 import ChatBox from "../ChatBox/ChatBox"
 import {io} from "socket.io-client"
-
+import '../ChatBox/ChatBox.css'
 
 const Chat = () =>{
       
@@ -67,7 +67,7 @@ const Chat = () =>{
   
     return (
         <>
-        <div className="Chat">
+        <div  className="Chat">
             {/* Left Side */}
             <div className="Left_side_chat">
                  
@@ -80,7 +80,6 @@ const Chat = () =>{
                         <div onClick={() => setCurrentChat(chat)}>
                             <Conversation data={chat} currentUserId={state._id} />
                           
-                           <h1>Conversation</h1> 
                         </div>
 
                     ))}
@@ -90,7 +89,7 @@ const Chat = () =>{
              
              {/* Right side */}
              <div className="Right-side-chat">
-                   <h4>your chat </h4>
+                   <h4>your chat with the person</h4>
                    {/* chat body */} 
                    
                    <ChatBox chat ={currentChat} currentUser = {state._id} setSendMessage={setSendMessage} recieveMessage={recieveMessage}/>
