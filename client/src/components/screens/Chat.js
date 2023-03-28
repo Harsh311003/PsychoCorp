@@ -67,7 +67,13 @@ const Chat = () =>{
         }
         getChats()
     },[state])
-  
+     
+    //sending the current chat as parameter 
+     const checkOnlineStatus = (chat) => {
+        const chatMember = chat.members.find((member)=> member!== state._id)
+        const online = onlineUsers.find((user)=>user.userId === chatMember)
+        return online ? true : false;
+     }
     return (
         <>
         <div  className="Chat">
@@ -81,7 +87,7 @@ const Chat = () =>{
                         
                         
                         <div onClick={() => setCurrentChat(chat)}>
-                            <Conversation data={chat} currentUserId={state._id} />
+                            <Conversation data={chat} currentUserId={state._id} online = {checkOnlineStatus(chat)}/>
                           
                         </div>
 
